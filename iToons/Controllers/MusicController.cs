@@ -18,7 +18,7 @@ namespace iToons.Controllers
         [Route("GetMetaData")]
         public ActionResult GetMetaData(int id)
         {
-            // need object result because of MetaData byte[] prop
+            // need object result because of Metadata byte[] prop
             return new ObjectResult(Program.Music.GetMetaData(id));
         }
 
