@@ -1,18 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using iToons.Data;
+using iToons.Dependencies;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace iToons
 {
     public class Program
     {
+        public static IData Data { get; private set; }
+        public static IMusic Music { get; set; }
+
         public static void Main(string[] args)
         {
+            // custom dependency injection & sql data connection 
+            // performing migrations on startup
+            Data = new IData(new IDataSqlite());
+            Data.MigrateDatabase();
+            Music = new IMusic(new IMusicFileDirectory());
+            Music.GenerateMusicData();
             CreateHostBuilder(args).Build().Run();
         }
 
