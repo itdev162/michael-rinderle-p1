@@ -1,8 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.reducers = void 0;
-var Audio = require("./audio");
-exports.reducers = {
-    audio: Audio.reducer,
-};
+exports.reducers = {};
 //# sourceMappingURL=index.js.map

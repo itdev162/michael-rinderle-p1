@@ -6,10 +6,10 @@ import { Metadata } from '../models/Metadata';
 
 class Player extends React.PureComponent {
     
-    baseStreamUrl: any = "https://localhost:44334/music/getsongstream?id=";
-    baseMetaDataUrl: any = "https://localhost:44334/music/getmetadata?id=";
+    baseStreamUrl: any = "music/getsongstream?id=";
+    baseMetaDataUrl: any = "music/getmetadata?id=";
     
-    player = React.createRef();
+    player: React.RefObject<ReactHowler> = React.createRef<ReactHowler>();
 
     state = {
         playing : false,
@@ -112,7 +112,7 @@ class Player extends React.PureComponent {
                         <label htmlFor="formControlRange">Volume</label>
                         <input type="range" className="form-control-range" id="formControlRange"
                             min="0" max="10" step="1" defaultValue="7"
-                            onChange={e => { this.volume(e.target.value) }} />
+                            onChange={e => { this.volume(+e.target.value) }} />
                     </div>
                 </div>
             </div>      
@@ -123,12 +123,12 @@ class Player extends React.PureComponent {
         return (
             <div className="col-sm-12">
                 <div className="btn-group btn-group-expand" role="group" aria-label="Basic example">
-                    <button className="btn btn-primary" onClick={() => { this.next() }}>Next Song</button>
-                    <button className="btn btn-primary" style={{ background: this.state.loop ? "green" : "#1b6ec2" }} onClick={() => { this.loop() }}> {this.state.loop ? 'looping' : 'loop'} </button>
-                    <button className="btn btn-primary" onClick={() => { this.play() }}>Play</button>
-                    <button className="btn btn-primary" onClick={() => { this.mute() }}>Mute</button>
-                    <button className="btn btn-primary" style={{ background: this.state.shuffle ? "green" : "#1b6ec2" }} onClick={() => { this.shuffle() }}>{this.state.shuffle ? 'shuffling' : 'Shuffle'}</button>
+                    <button className="btn btn-primary" onClick={() => { this.play() }}>{this.state.playing ? 'Stop' : 'Play'}</button>
                     <button className="btn btn-primary" onClick={() => { this.seek() }}>Seek</button>
+                    <button className="btn btn-primary" onClick={() => { this.next() }}>Next</button>
+                    <button className="btn btn-primary" onClick={() => { this.mute() }}>Mute</button>
+                    <button className="btn btn-primary" style={{ background: this.state.loop ? "green" : "#1b6ec2" }} onClick={() => { this.loop() }}> {this.state.loop ? 'looping' : 'loop'} </button>
+                    <button className="btn btn-primary" style={{ background: this.state.shuffle ? "green" : "#1b6ec2" }} onClick={() => { this.shuffle() }}>{this.state.shuffle ? 'shuffling' : 'Shuffle'}</button>          
                 </div>
             </div>
         );
@@ -145,7 +145,7 @@ class Player extends React.PureComponent {
                 preload={true}
                 volume={this.state.volume}
                 onEnd={this.onEnd}
-                ref={(ref) => (this.player = ref)}>
+                ref={(player) => (this.player = player as unknown as React.RefObject<ReactHowler>)}>
             </ReactHowler>         
         );
     }
@@ -178,8 +178,10 @@ class Player extends React.PureComponent {
     }
 
     public seek() {
+        // @ts-ignore
         let seek = this.player.seek() + 25;
-         this.player.seek(seek);
+        // @ts-ignore
+        this.player.seek(seek);
     }
 
     public onEnd() {
@@ -193,13 +195,12 @@ class Player extends React.PureComponent {
     }
 
     public timer() {
-        while(true) {
-            let dur = this.player.duration();
-            let seek = this.player.seek();
-            this.setTimeout(this.setState({
-                duration: dur,
-                current: seek
-            }), 1000);
+        while (true) {
+            // @ts-ignore
+            let dur = this.player.current.duration();
+            // @ts-ignore
+            let seek = this.player.current.seek();
+            this.setState({ duration: dur, current: seek });       
         }
     }
 }

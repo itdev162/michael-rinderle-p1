@@ -36,7 +36,6 @@
     <None Remove="ClientApp\src\components\Player.tsx" />
     <None Remove="ClientApp\src\models\AudioControls.tsx" />
     <None Remove="ClientApp\src\models\Metadata.tsx" />
-    <None Remove="ClientApp\src\store\audio.ts" />
   </ItemGroup>
 
   <ItemGroup>
