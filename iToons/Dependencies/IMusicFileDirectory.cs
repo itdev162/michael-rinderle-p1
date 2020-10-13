@@ -9,20 +9,14 @@ namespace iToons.Dependencies
 {
     public class IMusicFileDirectory : IMusicRepository
     {
-        public void GenerateMusicData()
+        public async void GenerateMusicData()
         {
-            int counter = 0;
-            int sample = 50;
-
             Program.Data.ClearMetaData();
             var files = Directory.GetFiles(Constants.MusicDirectoryRoot);
             foreach (var f in files)
             {
                 try
                 {
-                    //if (sample < counter) break;
-                    //counter++;
-
                     var fileMetaData = TagLib.File.Create(f);
                     var meta = new MetaData();
                     meta.FileName = f;

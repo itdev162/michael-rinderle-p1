@@ -2,6 +2,7 @@ using iToons.Data;
 using iToons.Dependencies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
 
 namespace iToons
 {
@@ -16,8 +17,8 @@ namespace iToons
             // performing migrations on startup
             Data = new IData(new IDataSqlite());
             Data.MigrateDatabase();
-            Music = new IMusic(new IMusicFileDirectory());
-            Music.GenerateMusicData();
+            Music = new IMusic(new IMusicFileDirectory());      
+            Task.Run(() =>  { Music.GenerateMusicData();  });
             CreateHostBuilder(args).Build().Run();
         }
 

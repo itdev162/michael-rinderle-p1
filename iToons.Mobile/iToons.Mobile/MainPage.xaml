@@ -38,12 +38,11 @@
             TextColor="Black"
             Text="iToons Radio"/>
 
-
         <Label 
             Grid.Row="1" 
             Grid.Column="0" 
-             TextColor="White"
-            Text="Title :"/>
+             TextColor="CornflowerBlue"
+            Text="Title "/>
         
         <Label 
             Grid.Row="1" 
@@ -54,25 +53,26 @@
         <Label 
             Grid.Row="2" 
             Grid.Column="0" 
-             TextColor="White"
-            Text="Artist"/>
+            TextColor="CornflowerBlue"
+            Text="Artist "/>
         
         <Label 
             Grid.Row="2" 
             Grid.Column="1" 
-             TextColor="White"
+            TextColor="White"
             Text="{Binding Current.Artists, Mode=TwoWay}"/>
 
         <Label 
             Grid.Row="3" 
             Grid.Column="0" 
-             TextColor="White"
-            Text="Album"/>
+             TextColor="CornflowerBlue"
+            Text="Album "/>
         
         <Label 
             Grid.Row="3" 
             Grid.Column="1" 
             TextColor="White"
+            FontSize="15"
             Padding="0,0,0,25"
             Text="{Binding Current.Album, Mode=TwoWay}"/>
 
