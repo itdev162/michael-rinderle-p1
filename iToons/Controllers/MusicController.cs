@@ -26,7 +26,7 @@ namespace iToons.Controllers
         [Route("GetSongStream")]
         public ActionResult GetSongStream(int id)
         {
-            return File(Program.Music.GetSongStream(id), "audio/mpeg", "id");
+            return File(Program.Music.GetSongStream(id), "audio/mpeg", "id.mp3");
         }
     }
 }

@@ -15,10 +15,10 @@ namespace iToons.Dependencies
         public void MigrateDatabase()
         {
             using var sql = new SqliteContext();
+            // sql.Database.Migrate();
             sql.MetaDatas.RemoveRange(sql.MetaDatas);
             sql.Database.ExecuteSqlRaw("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='MetaDatas'");
             // sql.Database.EnsureCreated();
-            sql.Database.Migrate();
         }
 
         public void AddMetaData(MetaData meta)

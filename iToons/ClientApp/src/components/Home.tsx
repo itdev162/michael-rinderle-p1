@@ -9,7 +9,7 @@ const home = () => {
                 <div className="col-sm-12">
                     <h1>iToons Radio</h1>
                     <p>Celebrating Hip Hop's Underground  Independent Golden Age circa 2000-2010</p>
-                    <p>We Take One Album at at time, One song at a time.</p>
+                    <p>We take one album at at time, one song at a time.</p>
                     <hr />
                     <div className="col-sm-12 player-bg">
                         <Player/>

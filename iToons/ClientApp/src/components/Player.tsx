@@ -19,7 +19,7 @@ class Player extends React.PureComponent {
         volume : .7,
         count : 1,
         songId : 0,
-        streamUrl : 'https://localhost:44344/music/getsongstream?id=4',
+        streamUrl : 'music/getsongstream?id=4',
         metaUrl : '',
         title : '',
         artist : '',
@@ -128,7 +128,7 @@ class Player extends React.PureComponent {
                     <button className="btn btn-primary" onClick={() => { this.next() }}>Next</button>
                     <button className="btn btn-primary" onClick={() => { this.mute() }}>Mute</button>
                     <button className="btn btn-primary" style={{ background: this.state.loop ? "green" : "#1b6ec2" }} onClick={() => { this.loop() }}> {this.state.loop ? 'looping' : 'loop'} </button>
-                    <button className="btn btn-primary" style={{ background: this.state.shuffle ? "green" : "#1b6ec2" }} onClick={() => { this.shuffle() }}>{this.state.shuffle ? 'shuffling' : 'Shuffle'}</button>          
+                    <button className="btn btn-primary" style={{ background: this.state.shuffle ? "green" : "#1b6ec2" }} onClick={() => { this.shuffle() }}>{this.state.shuffle ? 'shuffling' : 'Shuffle'}</button>  
                 </div>
             </div>
         );
@@ -145,6 +145,7 @@ class Player extends React.PureComponent {
                 preload={true}
                 volume={this.state.volume}
                 onEnd={this.onEnd}
+                html5={true}
                 ref={(player) => (this.player = player as unknown as React.RefObject<ReactHowler>)}>
             </ReactHowler>         
         );

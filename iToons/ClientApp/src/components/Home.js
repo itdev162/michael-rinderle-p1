@@ -9,7 +9,7 @@ var home = function () {
             React.createElement("div", { className: "col-sm-12" },
                 React.createElement("h1", null, "iToons Radio"),
                 React.createElement("p", null, "Celebrating Hip Hop's Underground  Independent Golden Age circa 2000-2010"),
-                React.createElement("p", null, "We Take One Album at at time, One song at a time."),
+                React.createElement("p", null, "We take one album at at time, one song at a time."),
                 React.createElement("hr", null),
                 React.createElement("div", { className: "col-sm-12 player-bg" },
                     React.createElement(Player_1.default, null))))));
