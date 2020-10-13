@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:converters="clr-namespace:iToons.Mobile.Converters"
+    x:Class="iToons.Mobile.MainPage"
+    Title="iToons"
+     BackgroundColor="DimGray">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid 
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand"
+        Margin="5,5,5,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Label 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2"
+            FontSize="25"
+            HorizontalOptions="Center"
+            Padding="0,0,0,15"
+            TextColor="Black"
+            Text="iToons Radio"/>
+
+
+        <Label 
+            Grid.Row="1" 
+            Grid.Column="0" 
+             TextColor="White"
+            Text="Title :"/>
+        
+        <Label 
+            Grid.Row="1" 
+            Grid.Column="1" 
+            TextColor="White"
+            Text="{Binding Current.Title, Mode=TwoWay}"/>
+
+        <Label 
+            Grid.Row="2" 
+            Grid.Column="0" 
+             TextColor="White"
+            Text="Artist"/>
+        
+        <Label 
+            Grid.Row="2" 
+            Grid.Column="1" 
+             TextColor="White"
+            Text="{Binding Current.Artists, Mode=TwoWay}"/>
+
+        <Label 
+            Grid.Row="3" 
+            Grid.Column="0" 
+             TextColor="White"
+            Text="Album"/>
+        
+        <Label 
+            Grid.Row="3" 
+            Grid.Column="1" 
+            TextColor="White"
+            Padding="0,0,0,25"
+            Text="{Binding Current.Album, Mode=TwoWay}"/>
+
+        <Image 
+            Grid.Row="4" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            HeightRequest="350"
+            WidthRequest="350"
+            Aspect="AspectFill"
+            Source="{Binding Current.CoverArt, Converter={StaticResource ByteArrayToImage}}"/>
+
+        <Slider 
+            Margin="0,15,0,15"
+            Grid.Row="5" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2"   
+            Maximum="{Binding SongDuration, Mode=OneWay}"
+            Minimum="0"
+            Value="{Binding AudioPointer, Mode=TwoWay}"/>
+
+        <Grid
+            Padding="0,15,0,0"
+            Grid.Row="6" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                HeightRequest="75"
+                Text="{Binding PlayPauseText, Mode=TwoWay}"        
+                BackgroundColor="LightGray"
+                Command="{Binding PlayPauseCommand}"/>
+
+            <Button 
+                Grid.Row="0" 
+                Grid.Column="1"
+                HeightRequest="75"
+                Text="{Binding ShuffleText, Mode=TwoWay}"
+                BackgroundColor ="{Binding ShuffleButton, Mode=TwoWay}"                
+                Command="{Binding ShuffleCommand}"/>
+
+            <Button 
+                Grid.Row="0" 
+                Grid.Column="2" 
+                HeightRequest="75"
+                Text="Next" 
+                BackgroundColor="LightGray"
+                Command="{Binding NextSongCommand}"/>
+
+
+        </Grid>
+    </Grid>
+</ContentPage>
