@@ -5,5 +5,5 @@ project 1 : itoons [stream your own mp3 collection]
 ![Screenshot](screenshot.png)
 
 #mobile interface
-![Screenshot](screenshot-mobile.png)
+![Screenshot](screenshot-mobile.jpg)
 
