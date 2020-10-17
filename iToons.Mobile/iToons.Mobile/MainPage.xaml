@@ -11,9 +11,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid 
-        HorizontalOptions="CenterAndExpand"
-        VerticalOptions="CenterAndExpand"
-        Margin="5,5,5,0">
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Margin="15,0,15,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -34,7 +34,7 @@
             Grid.ColumnSpan="2"
             FontSize="25"
             HorizontalOptions="Center"
-            Padding="0,0,0,15"
+            Padding="0,0,0,25"
             TextColor="Black"
             Text="iToons Radio"/>
 
@@ -73,16 +73,16 @@
             Grid.Column="1" 
             TextColor="White"
             FontSize="15"
-            Padding="0,0,0,25"
+            Padding="0,0,0,20"
             Text="{Binding Current.Album, Mode=TwoWay}"/>
 
         <Image 
             Grid.Row="4" 
             Grid.Column="0" 
             Grid.ColumnSpan="2" 
-            HeightRequest="350"
-            WidthRequest="350"
-            Aspect="AspectFill"
+            HeightRequest="300"
+            WidthRequest="300"
+            Aspect="AspectFit"
             Source="{Binding Current.CoverArt, Converter={StaticResource ByteArrayToImage}}"/>
 
         <Slider 
@@ -120,7 +120,7 @@
                 Grid.Row="0" 
                 Grid.Column="1"
                 HeightRequest="75"
-                Text="{Binding ShuffleText, Mode=TwoWay}"
+                Text="Shuffle"
                 BackgroundColor ="{Binding ShuffleButton, Mode=TwoWay}"                
                 Command="{Binding ShuffleCommand}"/>
 

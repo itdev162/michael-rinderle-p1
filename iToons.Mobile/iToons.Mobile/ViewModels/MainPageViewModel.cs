@@ -74,18 +74,6 @@ namespace iToons.Mobile.ViewModels
             }
         }
 
-        private string _ShuffleText = "Shuffle";
-        public string ShuffleText
-        {
-            get => _ShuffleText;
-            set
-            {
-                if (_ShuffleText == value) return;
-                _ShuffleText = value;
-                OnPropertyChanged(nameof(ShuffleText));
-            }
-        }
-
         private string _PlayPauseText = "Pause";
         public string PlayPauseText
         {
@@ -133,7 +121,7 @@ namespace iToons.Mobile.ViewModels
             API = new Api();
             CrossMediaManager.Current.AutoPlay = true;
             CrossMediaManager.Current.ShuffleMode = ShuffleMode.Off;
-            CrossMediaManager.Current.MediaItemFinished -= Current_MediaItemFinished;
+            CrossMediaManager.Current.MediaItemFinished += Current_MediaItemFinished;
             CrossMediaManager.Current.PositionChanged += Current_PositionChanged;
         }
 
@@ -176,13 +164,11 @@ namespace iToons.Mobile.ViewModels
         {
             if(CrossMediaManager.Current.ShuffleMode == ShuffleMode.All)
             {
-                ShuffleText = "Shuffle";
                 ShuffleButton = Color.LightGray;
                 CrossMediaManager.Current.ShuffleMode = ShuffleMode.Off;
             }
             else
             {
-                ShuffleText = "Shuffling";
                 ShuffleButton = Color.Green;
                 CrossMediaManager.Current.ShuffleMode = ShuffleMode.All;
             }
@@ -193,13 +179,9 @@ namespace iToons.Mobile.ViewModels
             AudioPointer = (int)e.Position.TotalSeconds;
         }
 
-        private async void Current_MediaItemFinished(object sender, MediaManager.Media.MediaItemEventArgs e)
+        private void Current_MediaItemFinished(object sender, MediaManager.Media.MediaItemEventArgs e)
         {
-            if(CrossMediaManager.Current.ShuffleMode == ShuffleMode.All)
-            {
-                await CrossMediaManager.Current.PlayPause();
-                StartAudio();
-            }
+            NextSongAudio();
         }
     }
 }
